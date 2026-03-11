@@ -1,0 +1,14 @@
+node_modules/
+.env
+data/*.db
+data/*.db-wal
+data/*.db-shm
+coverage/
+*.log
+.DS_Store
+Voice_AI_Agent_Coding_Challenge.pdf
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+logs/

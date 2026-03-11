@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: voice-ai-patient-registration
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python -m src_python.seed
+    startCommand: gunicorn --bind 0.0.0.0:$PORT "src_python.app:create_app()"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: DATABASE_PATH
+        value: /opt/render/project/src/data/patients.db
+      - key: VAPI_API_KEY
+        sync: false
+      - key: VAPI_PHONE_NUMBER_ID
+        sync: false
+      - key: VAPI_WEBHOOK_SECRET
+        sync: false
+      - key: LOG_LEVEL
+        value: info
+    disk:
+      name: patient-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
